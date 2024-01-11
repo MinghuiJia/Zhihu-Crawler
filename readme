@@ -1,0 +1,13 @@
+由于知乎可以检测selenium自动化测试的脚本，因此可以阻止selenium的继续访问
+因此，需要使用自己打开的一个浏览器，再用selenium接管这个浏览器这样就可以完成反爬的处理
+步骤：
+1.增加一个新的映射，以保存原来的chrome不被污染
+    1.1.添加环境变量：将chrome.exe放入系统环境变量中
+    1.2.新建一个存放新环境的文件夹并映射：chrome.exe --remote-debugging-port=9222 --user-data-dir="xxx\selenium_data"
+2.selenium代码接管
+
+.\selenium_data文件夹是使用增加新的chrome映射的存放新环境
+main.py - 主函数执行文件
+login.py - 模拟用户登录操作（账号密码形式）
+getQuestionsURL.py - 获取关键词对应的所有问题urls
+getAnswers.py - 获取所有问题urls中每个问题对应的所有回答
