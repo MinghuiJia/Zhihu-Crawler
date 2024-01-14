@@ -273,6 +273,8 @@ def getAnsweredInfo(answered_file_path):
     os.environ["webdriver.chrome.driver"] = chromedriver
     # 用selenium接管这个浏览器
     chrome_options = Options()
+    # 禁止浏览器加载页面图片，防止问题答案过多，加载过程中导致内存不足
+    chrome_options.add_experimental_option("prefs", {"profile.managed_default_content_settings.images": 2})
     chrome_options.add_experimental_option("debuggerAddress", "127.0.0.1:9222")  # 前面设置的端口号
     browser = webdriver.Chrome(chrome_options=chrome_options)  # executable执行webdriver驱动的文件
 
